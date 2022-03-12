@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "835010258034",
+    "project_id": "egy-guide",
+    "storage_bucket": "egy-guide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835010258034:android:e7de6dd6d3db03195b4eeb",
+        "android_client_info": {
+          "package_name": "com.delta.egy_tour_guide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835010258034-7ib3i0efgbs8j20a050qd2ptbl0njvf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLoXrlitiwdIyLZ_crkdaUnhd_B7AURtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835010258034-7ib3i0efgbs8j20a050qd2ptbl0njvf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
