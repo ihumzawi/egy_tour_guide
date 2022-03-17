@@ -2,6 +2,7 @@ import 'package:egy_tour_guide/models/models.dart';
 import 'package:egy_tour_guide/screens/profile/profile_screen.dart';
 import 'package:egy_tour_guide/screens/home/home_screen.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
+import 'package:egy_tour_guide/widgets/drawer_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'app_data.dart';
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: DrawerWidget(),
       appBar: AppBar(
         elevation: 0,
         leading: Builder(builder: (context) {
