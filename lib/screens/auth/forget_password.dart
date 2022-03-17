@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:egy_tour_guide/root.dart';
+import 'package:egy_tour_guide/layout.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

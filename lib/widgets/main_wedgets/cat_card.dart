@@ -7,55 +7,68 @@ class CatCard extends StatelessWidget {
   final Color topColor;
   final Color btomColor;
   final String photoPath;
-  CatCard({
-    required this.title,
-    required this.photoPath,
-    required this.supTitle,
-    this.btomColor  = Colors.purple,
-    this.topColor =   Colors.pink 
-
-  });
+  final VoidCallback onTap;
+  CatCard(
+      {required this.title,
+      required this.photoPath,
+      required this.supTitle,
+      this.btomColor = Colors.purple,
+      this.topColor = Colors.pink,
+      required this.onTap});
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5 , horizontal: 10),
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MyText(
-                    title: title,
-                    color: Colors.white,
-                    fontSize: size.width / 22,
-                    textAlign: TextAlign.right,
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(16),
+                        topRight: Radius.circular(16),
+                      )),
+                  width: 120,
+                  height: 120,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      photoPath,
+                    ),
                   ),
-                  MyText(
-                    title: supTitle,
-                    color: Colors.white,
-                    fontSize: size.width / 35,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      MyText(
+                        title: title,
+                        fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                        
+                      ),
+                      MyText(
+                        title: supTitle,
+                        fontSize: 14,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Image.asset(photoPath)
-            ],
-          ),
-        ),
-        height: size.width / 4,
-        width: size.width * 2,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment
-                .bottomRight, // 10% of the width, so there are ten blinds.
-            colors: <Color>[topColor, btomColor], // red to yellow
-            tileMode: TileMode.repeated, // repeats the gradient over the canvas
+                ),
+                const Icon(Icons.arrow_forward_ios, color: Colors.blue),
+                const SizedBox(width: 20),
+              ],
+            ),
           ),
         ),
       ),

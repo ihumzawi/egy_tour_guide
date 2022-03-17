@@ -18,13 +18,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _index = 0;
+  int _index = 1;
 
   List<Widget> screens = [
-     MainScreen(),
     CovernorateScreen(),
+     MainScreen(),
+    
     ProfileScreen(),
-    Center(child: Text('Body 3')),
+   // Center(child: Text('Body 3')),
   ];
  
   getUser() {
@@ -57,15 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         }),
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.of(context)
-                    .pushReplacementNamed(WelcomeScreen.welcomeRoute);
-              },
-              icon: const Icon(Icons.exit_to_app_outlined))
-        ],
+        
         title: const Text("دليل مصر السياحي"),
         centerTitle: true,
       ),
@@ -81,23 +74,19 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         items: const[
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Setting"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Fevoret"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite,color:  Colors.redAccent,), label: "المفضلة" , ),
+          BottomNavigationBarItem(icon: Icon(Icons.home,color:  Colors.greenAccent,), label: "الرئسية"),
+          
+          BottomNavigationBarItem(icon: Icon(Icons.person,color:  Colors.blueAccent,), label: "الصفحة الشخصية"),
         ],
+          selectedLabelStyle: const TextStyle( fontFamily: 'ElMessiri'),
+          unselectedLabelStyle: const TextStyle(fontSize: 15 , fontFamily: 'ElMessiri'),
+          selectedItemColor: Colors.blueAccent ,
+          unselectedItemColor: Colors.grey,
+          selectedFontSize: 18,
+
       ),
-      //   GridView.count(
-      //   padding: const EdgeInsets.all(8),
-      //   crossAxisCount: 2,
-      //   childAspectRatio: 7/8,
-      //   mainAxisSpacing: 8,
-      //   crossAxisSpacing: 8,
-      //   children:Governorate_data.map((governorateData) => CovernorateItem(
-      //   governorateData.imageURL,
-      //   governorateData.title
-      //   )).toList() ,
-      // ),
+     
     );
   }
 

@@ -16,6 +16,8 @@ class KExpansionTile extends StatelessWidget {
       backgroundColor: Colors.amber[100],
       title:  MyText(
         title: titel,
+        fontSize: 15,
+        
       ),
       children: buiiets ,
     );

@@ -5,7 +5,6 @@ import 'package:egy_tour_guide/widgets/form_widgets/my_button.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../auth/welcome_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -17,7 +16,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final _auth = FirebaseAuth.instance;
-
   bool _isLoding = false;
   String email = '';
   String name = '';
@@ -61,6 +59,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       });
     }
   }
+
+
+  // test 
 
   @override
   Widget build(BuildContext context) {

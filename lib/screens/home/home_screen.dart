@@ -1,25 +1,72 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:egy_tour_guide/constant/constant.dart';
+import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
 import 'package:egy_tour_guide/widgets/kExpansionTile.dart';
 import 'package:egy_tour_guide/widgets/my_bullet.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:egy_tour_guide/widgets/main_wedgets/cat_card.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  
+   MainScreen({Key? key}) : super(key: key);
+String name = '';
+
 
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+final _auth = FirebaseAuth.instance;
+  bool _isLoding = false;
+ 
+  String name = '';
+  String imageUrl = '';
+  bool _isSameUser = false;
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
+  void getUserData() async {
+    _isLoding = true;
+    try {
+      final DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .get();
+      // ignore: unnecessary_null_comparison
+      if (userDoc == null) {
+        return;
+      } else {
+        setState(() {
+          name = userDoc.get('name');
+          imageUrl = userDoc.get('userImageURL');
+          
+        });
+        User? user = _auth.currentUser;
+        String _uid = user!.uid;
+      }
+    } catch (err) {
+      print('------------------errer ------------');
+    } finally {
+      setState(() {
+        _isLoding = false ;
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Constant.bgColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              color: Colors.amber[100],
+              color:  Constant.bgColor,
               child: KExpansionTile(
                 titel: 'نصائح للجمهور بشأن مرض فيروس كورونا (كوفيد-19)',
                 buiiets: [
@@ -46,48 +93,63 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
             Container(
-              child: const Padding(
-                padding: EdgeInsets.all(30),
-                child: MyText(
-                  title: 'استمتع بأفضل الخدمات التى \n يقدمها البرنامج ',
-                  textAlign: TextAlign.start,
+              child:  Padding(
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  children:  [
+                     MyText(
+                      title:   'مرحبا 👋 ${name.toString()} ',
+                      textAlign: TextAlign.start,
+                      fontSize: 27,
+                      color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                    ),
+                     const MyText(
+                      title: ' استمتع بأفضل الخدمات التى  يقدمها البرنامج ',
+                      textAlign: TextAlign.start,
+                      fontSize: 24,
+                      lines: 1,
+                      color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                    ),
+                  ],
                 ),
               ),
-              height: 150,
+              
               width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
+              decoration: const BoxDecoration(
+                color: Constant.bgColor,
               ),
             ),
             const SizedBox(
               height: 5,
             ),
             CatCard(
-              title: 'عرووض رائعة',
-              supTitle: 'assets/images/price-tag.png',
-              photoPath: 'assets/images/price-tag.png',
+              title: 'استكشف المحافظات',
+              supTitle: ' استكشف افضل الاماكن السياحية داخل مصر واعرف اهم الماكن المجاورة لمنطقتك',
+              photoPath: "assets/images/exploration.png",
+              onTap: (){
+ Navigator.of(context)
+                    .pushReplacementNamed(CovernorateScreen.covernorateRoute);
+              },
             ),
             CatCard(
               title: 'عرووض رائعة',
-              supTitle: 'assets/images/price-tag.png',
-              photoPath: 'assets/images/price-tag.png',
+              supTitle: 'استمتع بأفضل العروض الحصرية الموجوده داخل التطبيق المحدثة بشكل دائم',
+              photoPath:  "assets/images/offers.png",
               btomColor: Colors.blue,
               topColor: Colors.yellow,
+               onTap: (){},
             ),
             CatCard(
-              title: 'عرووض رائعة',
-              supTitle: 'assets/images/price-tag.png',
-              photoPath: 'assets/images/price-tag.png',
+              title: 'اخبار اقتصادية وسياحية',
+              supTitle: 'اخر الاخبار والاحداث الاقتصادية والسياحية داخل مصر',
+              photoPath:"assets/images/news.png",
               btomColor: Colors.blue,
               topColor: Colors.yellow,
+               onTap: (){},
             ),
-            CatCard(
-              title: 'عرووض رائعة',
-              supTitle: 'assets/images/price-tag.png',
-              photoPath: 'assets/images/price-tag.png',
-              btomColor: Colors.blue,
-              topColor: Colors.yellow,
-            ),
+            
           ],
         ),
       ),

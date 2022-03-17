@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../app_data.dart';
 
 class CovernorateScreen extends StatefulWidget {
+  static const covernorateRoute = '/CovernorateScreen';
   const CovernorateScreen({
     Key? key,
   }) : super(key: key);

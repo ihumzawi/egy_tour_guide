@@ -1,6 +1,7 @@
 import 'package:egy_tour_guide/screens/auth/forget_password.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_guide.dart';
-import 'package:egy_tour_guide/root.dart';
+import 'package:egy_tour_guide/layout.dart';
+import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.covernorateRoute : (context)=> const HomeScreen(),
         ForgetPassword.forgetPaswword : (context) => ForgetPassword(),
         CovernorateGuide.covernorateRoute : (context) => CovernorateGuide(),
+        CovernorateScreen.covernorateRoute : (context) =>const CovernorateScreen()
       } ,
     );
   }
