@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CovernorateItem extends StatelessWidget {
   final String imageURL;
   final String title;
-  final int places;
+  final String places;
   final String id ;
   void selectedITem(BuildContext ctx){
    Navigator.of(ctx).pushNamed(CovernorateGuide.covernorateRoute,

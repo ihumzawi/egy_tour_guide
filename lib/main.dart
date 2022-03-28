@@ -1,3 +1,4 @@
+import 'package:egy_tour_guide/admin_forms/add_covernorate.dart';
 import 'package:egy_tour_guide/screens/auth/forget_password.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_guide.dart';
 import 'package:egy_tour_guide/layout.dart';
@@ -64,14 +65,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
     
-     initialRoute: isLogIn! ? HomeScreen.covernorateRoute : WelcomeScreen.welcomeRoute,
+     initialRoute: isLogIn! ? LayOutScreen.covernorateRoute : WelcomeScreen.welcomeRoute,
       routes:{
         WelcomeScreen.welcomeRoute : (context)=>  WelcomeScreen() ,
         CreatAccount.creatRoute: (context)=> CreatAccount(),
-        HomeScreen.covernorateRoute : (context)=> const HomeScreen(),
+        LayOutScreen.covernorateRoute : (context)=> const LayOutScreen(),
         ForgetPassword.forgetPaswword : (context) => ForgetPassword(),
         CovernorateGuide.covernorateRoute : (context) => CovernorateGuide(),
-        CovernorateScreen.covernorateRoute : (context) =>const CovernorateScreen()
+        CovernorateScreen.covernorateRoute : (context) =>const CovernorateScreen(),
+        AddCover.addCover: (context) => AddCover() ,
       } ,
     );
   }

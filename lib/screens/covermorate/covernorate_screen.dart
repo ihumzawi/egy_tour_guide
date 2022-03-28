@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:egy_tour_guide/layout.dart';
 import 'package:egy_tour_guide/models/models.dart';
 import 'package:egy_tour_guide/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,7 +20,17 @@ class _CovernorateScreenState extends State<CovernorateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+         appBar: AppBar(
+        elevation: 0,
+        leading: IconButton( onPressed: (){
+          Navigator.of(context).pushReplacementNamed(
+                                LayOutScreen.covernorateRoute);
+        }
+        ,icon: const Icon(Icons.arrow_back_ios),),
+        
+        title: const Text("محافظات مصر الجميلة"),
+        centerTitle: true,
+      ),
         // get data in firebase
         body: StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('gover').snapshots(),

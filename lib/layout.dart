@@ -10,15 +10,15 @@ import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
 import 'screens/covermorate/covernorate_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-  static const covernorateRoute = 'CovernorateScrren';
+class LayOutScreen extends StatefulWidget {
+  const LayOutScreen({Key? key}) : super(key: key);
+  static const covernorateRoute = 'LayOutScreen';
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<LayOutScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<LayOutScreen> {
   int _index = 1;
 
   List<Widget> screens = [

@@ -4,9 +4,7 @@ import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:egy_tour_guide/palette.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
-import 'package:egy_tour_guide/widgets/form_widgets/my_text_field.dart';
 import 'package:egy_tour_guide/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -325,26 +323,6 @@ class _CreatAccountState extends State<CreatAccount> {
                             print('full name : ${_fullNameController.text}');
                           },
                         ),
-                        MyTextField(
-                            autofocus: true,
-                            onSaved: (value) {
-                              _myemailController.text = value;
-                            },
-                            validator: (val) {
-                              if (val.length > 30 || val.length < 7) {
-                                return "لا يمكن ان يكون الايميل بهذا الحجم";
-                              }
-
-                              if (val.contains('@')) {
-                                return null;
-                              } else {
-                                return 'يجب كتابه ايميل صحيح في هذا الحقل';
-                              }
-                            },
-                            hint: 'البريد الالكترونى',
-                            icon: const Icon(Icons.email_outlined),
-                            textInputType: TextInputType.emailAddress,
-                            textInputAction: TextInputAction.next),
                         MyTextField(
                             autofocus: true,
                             onSaved: (value) {

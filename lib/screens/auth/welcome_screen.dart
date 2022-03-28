@@ -19,6 +19,9 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   var myemail, mypassword;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+
+  // TextEditingController _emailController = TextEditingController(text: 'ihumzawi@gmail.com');
+  // TextEditingController _passController = TextEditingController(text: '199594');
   signIn() async {
     var formData = formState.currentState;
 
@@ -32,6 +35,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         return userCredential;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
+          // ignore: avoid_print
           print('No user found for that email.');
           // ignore: avoid_single_cascade_in_expression_statements
           AwesomeDialog(
@@ -104,9 +108,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       fontWeight: FontWeight.w700,
                       fontSize: 15,
                     ),
+                    // emali input fild
                     MyTextField(
+                    
+                      // controller: _emailController,
                       onSaved: (value) {
-                        myemail = value;
+                       myemail = value;
+                      //  _emailController.text = value;
                       },
                       validator: (val) {
                         if (val.length > 30 || val.length < 7) {
@@ -120,12 +128,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         }
                       },
                       hint: 'أدخال بريدك الاليكترونى',
-                      icon:const Icon( Icons.person_outline),
+                      
+                      icon: const Icon(Icons.person_outline),
                       textInputAction: TextInputAction.next,
-                      autofocus: false,
+                      autofocus: true,
                       textInputType: TextInputType.emailAddress,
+                      
                     ),
+                    // password input fild
                     MyTextField(
+                      // controller: _passController,
                       validator: (val) {
                         if (val.length > 30 || val.length < 4) {
                           return "لا يمكن ان تكون كلمه المرور بهذا الحجم";
@@ -134,7 +146,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         }
                       },
                       onSaved: (value) {
-                        mypassword = value;
+                       mypassword = value;
+                        // _passController.text = value;
                       },
                       contentpading: const EdgeInsets.only(
                           top: 12, left: 15, bottom: 12, right: 15),
@@ -154,7 +167,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         },
                       ),
                       hint: "ادخل كلمة السر",
-                      icon:const Icon(Icons.lock_outline) ,
+                      icon: const Icon(Icons.lock_outline),
                       obscureText: obpass,
                       textInputType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.next,
@@ -206,15 +219,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       onPressed: () async {
                         UserCredential response = await signIn();
                         if (response != null) {
+                          debugPrint("+++++++++++++++++++++++++++++++");
                           // ignore: avoid_print
-                          print("+++++++++++++++++++++++++++++++");
                           print(response);
-                          print("+++++++++++++++++++++++++++++++");
                           // ignore: avoid_print
-                          print(response.user!.email);
+                          print("+++++++++++++++++++++++++++++++");
+                          debugPrint(response.user!.email);
                           if (response.user!.emailVerified) {
                             Navigator.of(context).pushReplacementNamed(
-                                HomeScreen.covernorateRoute);
+                                LayOutScreen.covernorateRoute);
                           } else {
                             // ignore: avoid_single_cascade_in_expression_statements
                             AwesomeDialog(
@@ -230,11 +243,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                     ),
                                     const Text(
                                         'برجاء تفعيل الاميل ثم المحاوله مرة اخري'),
-                                      const SizedBox(
+                                    const SizedBox(
                                       width: 25,
-                                    ),     
+                                    ),
                                   ],
-                                  
                                 ),
                               ),
                             )..show();
