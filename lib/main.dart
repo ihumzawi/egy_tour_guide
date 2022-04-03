@@ -1,9 +1,11 @@
+import 'package:egy_tour_guide/admin_forms/add_Item.dart';
 import 'package:egy_tour_guide/admin_forms/add_covernorate.dart';
 import 'package:egy_tour_guide/screens/auth/forget_password.dart';
-import 'package:egy_tour_guide/screens/covermorate/covernorate_guide.dart';
+import 'package:egy_tour_guide/screens/covermorate/covernorate_place_item.dart';
 import 'package:egy_tour_guide/layout.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
+import 'package:egy_tour_guide/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -71,9 +73,9 @@ class MyApp extends StatelessWidget {
         CreatAccount.creatRoute: (context)=> CreatAccount(),
         LayOutScreen.covernorateRoute : (context)=> const LayOutScreen(),
         ForgetPassword.forgetPaswword : (context) => ForgetPassword(),
-        CovernorateGuide.covernorateRoute : (context) => CovernorateGuide(),
+    
         CovernorateScreen.covernorateRoute : (context) =>const CovernorateScreen(),
-        AddCover.addCover: (context) => AddCover() ,
+        AddItem.addCover: (context) => AddItem() ,
       } ,
     );
   }

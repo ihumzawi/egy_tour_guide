@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:egy_tour_guide/admin_forms/add_Item.dart';
 import 'package:egy_tour_guide/admin_forms/add_covernorate.dart';
 import 'package:egy_tour_guide/constant/constant.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
@@ -129,7 +130,7 @@ class _MainScreenState extends State<MainScreen> {
               photoPath: "assets/images/exploration.png",
               onTap: () {
                 Navigator.of(context)
-                    .pushReplacementNamed(AddCover.addCover);
+                    .pushReplacementNamed(AddItem.addCover);
               },
             ),
             CatCard(

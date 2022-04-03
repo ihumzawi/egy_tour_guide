@@ -1,3 +1,4 @@
+import 'package:egy_tour_guide/screens/covermorate/governorate_details.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 
@@ -5,16 +6,31 @@ class PlacesItem extends StatelessWidget {
   final String id ;
   final String title ; 
   final String imageUrl ;
-  final String goverBy ;
+  final String des;
+
+
+
 
   
-  void selectPlace() {}
-  const PlacesItem({required this.id, required this.title, required this.imageUrl, required this.goverBy});
+  void selectPlace(BuildContext context) {
+   
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => GovernorateDetails(
+          categoryTitel: title,
+          categoryId: id, des: des, imageUrl: imageUrl,
+        ),
+        
+      ),
+    );
+  }
+  const PlacesItem({required this.id, required this.title, required this.imageUrl, required this.des,});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectPlace,
+      onTap: () => selectPlace(context),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 7,

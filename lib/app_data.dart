@@ -5,191 +5,167 @@ const Governorate_data = [
   Governorate(
     id: 'c1',
     title: 'الدقهلية',
-    countActive: "4 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZGVzZXJ0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'https://read.opensooq.com/wp-content/uploads/2019/07/%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%B5%D9%88%D8%B1%D8%A9-%D9%81%D9%8A-%D9%85%D8%B5%D8%B1-new.jpg',
   ),
   Governorate(
     id: 'c2',
     title: 'الإسكندرية',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZGVzZXJ0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'https://advice.aqarmap.com.eg/ar/wp-content/uploads/2020/02/%D8%B4%D8%B1%D8%A7%D8%A1-%D8%B9%D9%82%D8%A7%D8%B1%D8%A7%D8%AA-%D9%81%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A%D8%A9-%D9%86%D8%A8%D8%B0%D8%A9.jpg',
   ),
   Governorate(
     id: 'c3',
     title: 'الإسماعيلية',
-    countActive: "20 نشاط",
+
     imageURL:
-        'https://images.unsplash.com/photo-1493558103817-58b2924bce98?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTAxfHxiZWFjaHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'https://www.immig-us.com/wp-content/uploads/2015/12/37277166df2.jpg',
   ),
   Governorate(
     id: 'c4',
     title: 'أسوان',
-    countActive: "20 نشاط",
+   
     imageURL:
-        'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZGVzZXJ0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'https://tourflag.com/wp-content/uploads/%D9%85%D8%B9%D8%A8%D8%AF-%D8%A3%D8%A8%D9%88%D8%B3%D9%85%D8%A8%D9%84.jpg',
   ),
   Governorate(
     id: 'c5',
     title: 'أسيوط',
-    countActive: "20 نشاط",
+   
     imageURL:
-        'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NjR8fHRyYXZlbHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'https://mediaaws.almasryalyoum.com/news/verylarge/2016/04/28/455263_0.JPG',
   ),
   Governorate(
     id: 'c6',
     title: 'الأقصر',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'https://www.travellwd.com/wp-content/uploads/2020/05/%D9%85%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%A7%D9%82%D8%B5%D8%B1.jpg',
   ),
     Governorate(
     id: 'c7',
     title: 'البحر الأحمر',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'https://www.egyptdaytours.net/wp-content/uploads/2019/05/%D8%B4%D8%B1%D9%85-%D8%A7%D9%84%D8%B4%D9%8A%D8%AE.jpg-%D8%A8-1024x614.jpg',
   ),
    Governorate(
     id: 'c8',
     title: 'البحيرة',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Qaitbay_Castle_in_Alexandria.jpg/1280px-Qaitbay_Castle_in_Alexandria.jpg',
   ),
    Governorate(
     id: 'c9',
     title: 'بني سويف',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c10',
     title: 'بورسعيد',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c11',
     title: 'جنوب سيناء',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c12',
     title: 'الجيزة',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c13',
     title: 'دمياط',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c14',
     title: 'سوهاج',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c15',
     title: 'السويس',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c16',
     title: 'الشرقية',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c17',
     title: 'شمال سيناء',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c18',
     title: 'الغربية',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c19',
     title: 'الفيوم',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c20',
     title: 'القاهرة',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c21',
     title: 'القليوبية',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c22',
     title: 'قنا',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c23',
     title: 'كفر الشيخ',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
  Governorate(
     id: 'c24',
     title: 'مطروح',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
   Governorate(
     id: 'c25',
     title: 'المنوفية',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
 Governorate(
     id: 'c26',
     title: 'المنيا',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
 Governorate(
     id: 'c27',
     title: 'الوادي الجديد',
-    countActive: "20 نشاط",
     imageURL:
-        'https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c2tpaW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+        'IMAGEURL',
   ),
 
 
