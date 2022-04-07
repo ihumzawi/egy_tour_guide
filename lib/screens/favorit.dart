@@ -1,46 +1,54 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:egy_tour_guide/widgets/places_item.dart';
-import 'package:egy_tour_guide/widgets/widgets.dart';
+import 'package:egy_tour_guide/taps.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../taps.dart';
-import '../home/home_screen.dart';
+import '../widgets/my_text.dart';
+import '../widgets/places_item.dart';
+import 'home/home_screen.dart';
 
-class CovernoratePlaceItem extends StatefulWidget {
-  static const covernorateRoute = '/covernorateGuide';
-  final String categoryId;
-  final String categoryTitel;
-
-  // ignore: use_key_in_widget_constructors
-  const CovernoratePlaceItem({
-    required this.categoryId,
-    required this.categoryTitel,
-  });
+class FavoritScreen extends StatefulWidget {
+  const FavoritScreen({ Key? key }) : super(key: key);
 
   @override
-  State<CovernoratePlaceItem> createState() => _CovernoratePlaceItemState();
+  State<FavoritScreen> createState() => _FavoritScreenState();
 }
 
-class _CovernoratePlaceItemState extends State<CovernoratePlaceItem> {
-
+class _FavoritScreenState extends State<FavoritScreen> {
+  String uid = '';
+  void gitUserId (){
+  final _auth = FirebaseAuth.instance;
+ User? user = _auth.currentUser;
+      uid = user!.uid;
+}
+@override
+  void initState() {
+   gitUserId ();
+    super.initState();
+  }
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text("المزارات المتوفرة داخل" " " + widget.categoryTitel),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
+      appBar: AppBar(
+        elevation: 0,
+        leading: Builder(builder: (context) {
+          return IconButton(
             onPressed: () {
-              Navigator.of(context)
-                  .pushReplacementNamed(TapsScreen.tapsRoute);
+                Navigator.of(context)
+                    .pushReplacementNamed(TapsScreen.tapsRoute);
             },
-          ),
-        ),
-        body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('places')
-              .where('gid', isEqualTo: widget.categoryId)
+            icon: const Icon(Icons.arrow_back_ios)
+            ,
+          );
+        }),
+        
+        title:  const Text('المفضلة'),
+        centerTitle: true,
+      ),
+     body:StreamBuilder<QuerySnapshot>(
+          stream:
+              FirebaseFirestore.instance
+      .collection('users').doc(uid).collection('likeUsers')
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -73,6 +81,7 @@ class _CovernoratePlaceItemState extends State<CovernoratePlaceItem> {
               );
             }
           },
-        ));
+        ) ,
+    );
   }
 }

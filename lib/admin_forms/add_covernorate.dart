@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:egy_tour_guide/screens/home/home_screen.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
-import '../layout.dart';
+import '../taps.dart';
+
 
 class AddCover extends StatefulWidget {
   static const String addCover = 'AddCover';
@@ -53,7 +55,7 @@ debugPrint('not valed');
         leading: IconButton(
           onPressed: () {
             Navigator.of(context)
-                .pushReplacementNamed(LayOutScreen.covernorateRoute);
+                .pushReplacementNamed(TapsScreen.tapsRoute);
           },
           icon: const Icon(Icons.arrow_back_ios),
         ),

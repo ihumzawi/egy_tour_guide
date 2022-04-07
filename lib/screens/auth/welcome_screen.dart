@@ -2,11 +2,13 @@
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:egy_tour_guide/screens/auth/forget_password.dart';
-import 'package:egy_tour_guide/layout.dart';
+import 'package:egy_tour_guide/screens/home/home_screen.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:egy_tour_guide/widgets/widgets.dart';
+
+import '../../taps.dart';
 
 // ignore: use_key_in_widget_constructors
 class WelcomeScreen extends StatefulWidget {
@@ -227,7 +229,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           debugPrint(response.user!.email);
                           if (response.user!.emailVerified) {
                             Navigator.of(context).pushReplacementNamed(
-                                LayOutScreen.covernorateRoute);
+                                TapsScreen.tapsRoute);
                           } else {
                             // ignore: avoid_single_cascade_in_expression_statements
                             AwesomeDialog(

@@ -6,14 +6,15 @@ class ListTileItem extends StatelessWidget {
   final String title ;
   final String supTitle ;
   final IconData icon ;
-  ListTileItem({
+  // ignore: use_key_in_widget_constructors
+  const ListTileItem({
     required this.onTap, required this.title, required this.icon, required this.supTitle,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10 , horizontal: 8),
       child: ListTile(
         title:  MyText(
           title: title,
@@ -22,13 +23,13 @@ class ListTileItem extends StatelessWidget {
           fontWeight: FontWeight.bold,
           color: Colors.blueAccent,
         ),
-        onTap: onTap,trailing: const Icon(Icons.arrow_back_ios_new),
+        onTap: onTap,trailing: const Icon(Icons.arrow_back_ios_new,color: Colors.amber,),
         leading: IconButton(icon: Icon(icon ,color: Colors.blueAccent,)  , onPressed: (){}, ),
         subtitle: MyText(
           title: supTitle,
           lines: 1,
-          fontSize: 13,
-          color: Colors.grey,
+          fontSize: 12,
+          color: const Color.fromARGB(255, 128, 128, 128),
           
         ),
         

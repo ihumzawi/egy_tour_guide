@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:egy_tour_guide/admin_forms/add_Item.dart';
-import 'package:egy_tour_guide/admin_forms/add_covernorate.dart';
 import 'package:egy_tour_guide/constant/constant.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
+import 'package:egy_tour_guide/screens/offers/offers_list.dart';
+import 'package:egy_tour_guide/taps.dart';
 import 'package:egy_tour_guide/widgets/kExpansionTile.dart';
 import 'package:egy_tour_guide/widgets/my_bullet.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
@@ -10,6 +11,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:egy_tour_guide/widgets/main_wedgets/cat_card.dart';
 
+import '../../widgets/drawer_widget.dart';
+
+// ignore: must_be_immutable
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
   String name = '';
@@ -19,11 +23,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+
+  
   final _auth = FirebaseAuth.instance;
+  // ignore: unused_field
   bool _isLoding = false;
 
   String name = '';
   String imageUrl = '';
+  // ignore: prefer_final_fields
   bool _isSameUser = false;
   @override
   void initState() {
@@ -61,6 +69,23 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       drawer: const DrawerWidget(),
+      appBar: AppBar(
+        elevation: 0,
+        leading: Builder(builder: (context) {
+          return IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(
+              Icons.menu,
+            ),
+          );
+        }),
+        
+        title: const Text("دليل مصر السياحي"),
+        centerTitle: true,
+      ),
       backgroundColor: Constant.bgColor,
       body: SingleChildScrollView(
         child: Column(
@@ -124,10 +149,23 @@ class _MainScreenState extends State<MainScreen> {
               height: 5,
             ),
             CatCard(
-              title: 'اضافة محافظة',
+              title: "المفضلة",
               supTitle:
                   ' استكشف افضل الاماكن السياحية داخل مصر واعرف اهم الماكن المجاورة لمنطقتك',
-              photoPath: "assets/images/exploration.png",
+              photoPath: "assets/images/add.png",
+              onTap: () {
+                  Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const TapsScreen(),
+                        ));
+              },
+            ),
+            CatCard(
+              title: "اضف تجربتك",
+              supTitle:
+                  ' استكشف افضل الاماكن السياحية داخل مصر واعرف اهم الماكن المجاورة لمنطقتك',
+              photoPath: "assets/images/add.png",
               onTap: () {
                 Navigator.of(context)
                     .pushReplacementNamed(AddItem.addCover);
@@ -150,7 +188,12 @@ class _MainScreenState extends State<MainScreen> {
               photoPath: "assets/images/offers.png",
               btomColor: Colors.blue,
               topColor: Colors.yellow,
-              onTap: () {},
+              onTap: () {
+                 Navigator.of(context)
+                    .pushReplacementNamed(OffersList.screenroute, arguments: {
+                      'titel' : 'استمتع بأفضل العروض'
+                    });
+              },
             ),
             CatCard(
               title: 'اخبار اقتصادية وسياحية',
@@ -160,6 +203,7 @@ class _MainScreenState extends State<MainScreen> {
               topColor: Colors.yellow,
               onTap: () {},
             ),
+            const SizedBox(height: 50,)
           ],
         ),
       ),

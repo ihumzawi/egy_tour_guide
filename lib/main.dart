@@ -1,11 +1,13 @@
 import 'package:egy_tour_guide/admin_forms/add_Item.dart';
-import 'package:egy_tour_guide/admin_forms/add_covernorate.dart';
 import 'package:egy_tour_guide/screens/auth/forget_password.dart';
-import 'package:egy_tour_guide/screens/covermorate/covernorate_place_item.dart';
-import 'package:egy_tour_guide/layout.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
+import 'package:egy_tour_guide/screens/drawer/privacy_policy.dart';
+import 'package:egy_tour_guide/screens/home/home_screen.dart';
+import 'package:egy_tour_guide/screens/offers/offers_list.dart';
+import 'package:egy_tour_guide/screens/profile/edit_profile.dart';
+import 'package:egy_tour_guide/screens/profile/profile_screen.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
-import 'package:egy_tour_guide/widgets/widgets.dart';
+import 'package:egy_tour_guide/taps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,7 +16,7 @@ import 'package:firebase_core/firebase_core.dart';
 bool? isLogIn;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await Firebase.initializeApp();
+  await Firebase.initializeApp();
   User? user = FirebaseAuth.instance.currentUser;
   if (user == null) {
     isLogIn = false;
@@ -24,12 +26,11 @@ void main() async {
     print('welcome');
   }
 
-  runApp( const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
 
   // This widget is the root of your application.
   @override
@@ -38,45 +39,45 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Egypt Tour Guide',
       localizationsDelegates: const [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-  ],
-  supportedLocales: const [
-    Locale('ar', 'AE'), // English, no country code
-   
-  ],
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ar', 'AE'), // English, no country code
+      ],
       theme: ThemeData(
         focusColor: Colors.blue,
         primarySwatch: Colors.blue,
         fontFamily: 'ElMessiri',
         textTheme: ThemeData.light().textTheme.copyWith(
-           headline5: const TextStyle(
-            color: Colors.blue,
-            fontFamily: 'ElMessiri',
-            fontSize: 24,
-            fontWeight: FontWeight.bold
-          ),
-           headline6: const TextStyle(
-            color: Colors.white,
-            fontFamily: 'ElMessiri',
-            fontSize: 26,
-            fontWeight: FontWeight.bold
-          ),
-          
-        ),
+              headline5: const TextStyle(
+                  color: Colors.blue,
+                  fontFamily: 'ElMessiri',
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              headline6: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'ElMessiri',
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold),
+            ),
       ),
-    
-     initialRoute: isLogIn! ? LayOutScreen.covernorateRoute : WelcomeScreen.welcomeRoute,
-      routes:{
-        WelcomeScreen.welcomeRoute : (context)=>  WelcomeScreen() ,
-        CreatAccount.creatRoute: (context)=> CreatAccount(),
-        LayOutScreen.covernorateRoute : (context)=> const LayOutScreen(),
-        ForgetPassword.forgetPaswword : (context) => ForgetPassword(),
-    
-        CovernorateScreen.covernorateRoute : (context) =>const CovernorateScreen(),
-        AddItem.addCover: (context) => AddItem() ,
-      } ,
+      initialRoute:
+          isLogIn! ? TapsScreen.tapsRoute : WelcomeScreen.welcomeRoute,
+      routes: {
+        WelcomeScreen.welcomeRoute: (context) => WelcomeScreen(),
+        CreatAccount.creatRoute: (context) => CreatAccount(),
+        ForgetPassword.forgetPaswword: (context) => ForgetPassword(),
+        CovernorateScreen.covernorateRoute: (context) =>
+            const CovernorateScreen(),
+        AddItem.addCover: (context) => const AddItem(),
+        ProfileScreen.route :(context) => const ProfileScreen(),
+        TapsScreen.tapsRoute: (context) => const TapsScreen(),
+        OffersList.screenroute: (context) => const OffersList(),
+        PrivacyPolicy.privacy: (context) => PrivacyPolicy(),
+        EditProfile.route :(context) => const EditProfile()
+      },
     );
   }
 }

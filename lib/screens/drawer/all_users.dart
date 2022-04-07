@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:egy_tour_guide/layout.dart';
+import 'package:egy_tour_guide/screens/home/home_screen.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../taps.dart';
 
 class AllUsers extends StatelessWidget {
   const AllUsers({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class AllUsers extends StatelessWidget {
           leading: IconButton(
             onPressed: () {
               Navigator.of(context)
-                  .pushReplacementNamed(LayOutScreen.covernorateRoute);
+                  .pushReplacementNamed(TapsScreen.tapsRoute);
             },
             icon: const Icon(Icons.arrow_back_ios),
           ),

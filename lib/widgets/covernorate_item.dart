@@ -16,6 +16,7 @@ class CovernorateItem extends StatelessWidget {
           categoryTitel: title,
         ),
       ),
+      
     );
   }
 
