@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'my_bullet.dart';
 import 'my_text.dart';
 
 class KExpansionTile extends StatelessWidget {
   final String titel;
   final List<Widget> buiiets ;
-   KExpansionTile({required this.titel, required this.buiiets});
+    // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+    KExpansionTile({required this.titel, required this.buiiets});
 
   @override
   Widget build(BuildContext context) {

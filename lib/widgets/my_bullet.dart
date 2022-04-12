@@ -1,8 +1,10 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 class MyList extends StatelessWidget{
 final String content ;
 
-   MyList({ required this.content});
+   const MyList({ required this.content});
   @override
   Widget build(BuildContext context) {
     return  Column(

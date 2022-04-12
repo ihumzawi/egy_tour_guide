@@ -24,6 +24,7 @@ class PlacesItem extends StatelessWidget {
       ),
     );
   }
+  // ignore: use_key_in_widget_constructors
   const PlacesItem({required this.id, required this.title, required this.imageUrl, required this.des,
    required this.placeId, required this.latLong,
    });

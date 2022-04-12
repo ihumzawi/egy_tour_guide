@@ -4,7 +4,6 @@ import 'package:egy_tour_guide/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../../taps.dart';
-import '../home/home_screen.dart';
 
 class CovernoratePlaceItem extends StatefulWidget {
   static const covernorateRoute = '/covernorateGuide';

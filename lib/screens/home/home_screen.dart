@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:egy_tour_guide/admin_forms/add_Item.dart';
 import 'package:egy_tour_guide/constant/constant.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
 import 'package:egy_tour_guide/screens/offers/offers_list.dart';
-import 'package:egy_tour_guide/taps.dart';
-import 'package:egy_tour_guide/widgets/kExpansionTile.dart';
+import 'package:egy_tour_guide/widgets/k_expansion_tile.dart';
 import 'package:egy_tour_guide/widgets/my_bullet.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:egy_tour_guide/widgets/main_wedgets/cat_card.dart';
 
 import '../../widgets/drawer_widget.dart';
+import '../place_from_user/add_place_frome_user.dart';
+import '../place_from_user/show_places_user.dart';
 
 // ignore: must_be_immutable
 class MainScreen extends StatefulWidget {
@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
 
   String name = '';
   String imageUrl = '';
-  // ignore: prefer_final_fields
+  // ignore: prefer_final_fields, unused_field
   bool _isSameUser = false;
   @override
   void initState() {
@@ -55,6 +55,7 @@ class _MainScreenState extends State<MainScreen> {
           imageUrl = userDoc.get('userImageURL');
         });
         User? user = _auth.currentUser;
+        // ignore: unused_local_variable
         String _uid = user!.uid;
       }
     } catch (err) {
@@ -95,10 +96,10 @@ class _MainScreenState extends State<MainScreen> {
               child: KExpansionTile(
                 titel: 'نصائح للجمهور بشأن مرض فيروس كورونا (كوفيد-19)',
                 buiiets: [
-                  MyList(
+                  const MyList(
                       content:
                           'ابتعد مسافة متر واحد على الأقل عن الآخرين للحد من مخاطر الإصابة بالعدوى عندما يسعلون أو يعطسون أو يتكلمون. ابتعد مسافة أكبر من ذلك عن الآخرين عندما تكون في أماكن مغلقة. كلما ابتعدت مسافة أكبر، كان ذلك أفضل.'),
-                  MyList(
+                  const MyList(
                       content:
                           'اجعل من ارتداء الكمامة عادة عندما تكون مع أشخاص آخرين. إنّ استعمال الكمامات وحفظها وتنظيفها والتخلص منها بشكل سليم أمر ضروري لجعلها فعالة قدر الإمكان.'),
                   Center(
@@ -148,27 +149,31 @@ class _MainScreenState extends State<MainScreen> {
             const SizedBox(
               height: 5,
             ),
-            CatCard(
-              title: "المفضلة",
-              supTitle:
-                  ' استكشف افضل الاماكن السياحية داخل مصر واعرف اهم الماكن المجاورة لمنطقتك',
-              photoPath: "assets/images/add.png",
-              onTap: () {
-                  Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => const TapsScreen(),
-                        ));
-              },
-            ),
+           
             CatCard(
               title: "اضف تجربتك",
               supTitle:
                   ' استكشف افضل الاماكن السياحية داخل مصر واعرف اهم الماكن المجاورة لمنطقتك',
               photoPath: "assets/images/add.png",
               onTap: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(AddItem.addCover);
+                // Navigator.of(context)
+                //     .pushReplacementNamed(AddItem.addCover);
+                 Navigator.of(context)
+                    .pushReplacementNamed(AddPlaceFromUser.pageRoute);
+              },
+            ),
+            CatCard(
+              title: 'استكشف المحافظات',
+              supTitle:
+                  ' استكشف افضل الاماكن السياحية داخل مصر واعرف اهم الماكن المجاورة لمنطقتك',
+              photoPath: "assets/images/exploration.png",
+              onTap: () {
+                 Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ShowPlacesUser(),
+                    ),
+                  );
               },
             ),
             CatCard(

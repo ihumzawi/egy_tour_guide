@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../taps.dart';
 import '../../widgets/my_text.dart';
-import '../home/home_screen.dart';
 
 class OffersList extends StatelessWidget {
 //  final String id;
@@ -11,6 +10,7 @@ class OffersList extends StatelessWidget {
 //   final String imageURL;
   static const String screenroute = 'offerslist';
 
+  // ignore: use_key_in_widget_constructors
   const OffersList() ;
  
 
@@ -19,7 +19,8 @@ class OffersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cat = ModalRoute.of(context)!.settings.arguments as Map<String ,String> ;
-    final Title = cat['titel'] ;
+    // ignore: unused_local_variable
+    final title = cat['titel'] ;
     return Scaffold(
     
       appBar: AppBar(
@@ -35,7 +36,7 @@ class OffersList extends StatelessWidget {
           );
         }),
         
-        title:  Text(Title.toString()),
+        title:  Text(title.toString()),
         centerTitle: true,
       ),
       body:StreamBuilder<QuerySnapshot>(
@@ -72,6 +73,7 @@ class OffersList extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget CardOffer (
     BuildContext context,
     {

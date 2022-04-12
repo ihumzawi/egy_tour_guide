@@ -1,4 +1,4 @@
-import 'package:egy_tour_guide/screens/favorit.dart';
+import 'package:egy_tour_guide/screens/favourite/favorit.dart';
 import 'package:flutter/material.dart';
 import 'screens/home/home_screen.dart';
 

@@ -1,19 +1,15 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:egy_tour_guide/screens/home/home_screen.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
-
 import '../taps.dart';
-
 class AddItem extends StatefulWidget {
   static const String addCover = 'AddItem';
   const AddItem({Key? key}) : super(key: key);
-
   @override
   State<AddItem> createState() => _AddItemState();
 }
-
 class _AddItemState extends State<AddItem> {
   // ignore: prefer_final_fields
   TextEditingController _nameCoverController = TextEditingController();
@@ -32,7 +28,6 @@ class _AddItemState extends State<AddItem> {
   TextEditingController ac4Controller = TextEditingController();
   TextEditingController ac5Controller = TextEditingController();
   // ignore: prefer_final_fields
-
   final _formKey = GlobalKey<FormState>();
   @override
   void dispose() {

@@ -18,7 +18,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-   String _uid = '';
+  String _uid = '';
   void gitUserId() {
     final _auth = FirebaseAuth.instance;
     User? user = _auth.currentUser;
@@ -28,18 +28,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     gitUserId();
-      getUserData();
+    getUserData();
     super.initState();
   }
 
- 
   final _auth = FirebaseAuth.instance;
   bool _isLoding = false;
   String email = '';
   String name = '';
   String imageUrl = '';
   String joinedAt = '';
+  // ignore: prefer_final_fields, unused_field
   bool _isSameUser = false;
+  bool isAdmin = false;
 
   void getUserData() async {
     _isLoding = true;
@@ -55,27 +56,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
         setState(() {
           email = userDoc.get('email');
           name = userDoc.get('name');
+          isAdmin = userDoc.get('isAdmin');
           imageUrl = userDoc.get('userImageURL');
           Timestamp joinedAtTimeStamp = userDoc.get('createdAd');
           var joindDate = joinedAtTimeStamp.toDate();
           joinedAt =
               '${joindDate.year} - ${joindDate.month} - ${joindDate.day}';
-              User? user = _auth.currentUser;
-        String _uid = user!.uid;
         });
-        
       }
     } catch (err) {
       print('------------------errer ------------');
     } finally {
       setState(() {
-        _isLoding = false ;
+        _isLoding = false;
       });
     }
   }
 
-
-  // test 
+  // test
 
   @override
   Widget build(BuildContext context) {
@@ -85,15 +83,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: Builder(builder: (context) {
           return IconButton(
             onPressed: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(TapsScreen.tapsRoute);
+              Navigator.of(context).pushReplacementNamed(TapsScreen.tapsRoute);
             },
-            icon: const Icon(Icons.arrow_back_ios)
-            ,
+            icon: const Icon(Icons.arrow_back_ios),
           );
         }),
-        
-        title:  const Text('الملف الشخصي'),
+        title: const Text('الملف الشخصي'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -119,15 +114,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 100,
                       width: 100,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          image: DecorationImage(image: _isLoding ? const NetworkImage('https://cdn-icons-png.flaticon.com/512/149/149071.png') : NetworkImage(imageUrl) ,),),
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: _isLoding
+                              ? const NetworkImage(
+                                  'https://cdn-icons-png.flaticon.com/512/149/149071.png')
+                              : NetworkImage(imageUrl),
+                        ),
+                      ),
                     ),
-                    MyText(
-                      title: name.toUpperCase(),
-                      color: kWhite,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyText(
+                          title: name.toUpperCase(),
+                          color: kWhite,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        isAdmin
+                            ? const Icon(
+                                Icons.verified_rounded,
+                                color: Colors.amber,
+                              )
+                            : Container(),
+                      ],
                     ),
                     MyText(
                       // ignore: unnecessary_brace_in_string_interps
@@ -160,6 +172,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       textColor: kWhite,
                       color: Colors.grey,
                       text: email.toUpperCase(),
+                      icon: Icons.mail_outline,
+                      isVsabilIcon: true,
                     ),
                     const SizedBox(
                       height: 30,
@@ -170,59 +184,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: kRed,
                       icon: Icons.logout_outlined,
                       isVsabilIcon: true,
-                      onPressed: (){
-                         // ignore: avoid_single_cascade_in_expression_statements
+                      onPressed: () {
+                        // ignore: avoid_single_cascade_in_expression_statements
                         AwesomeDialog(
-              context: context,
-              dialogType: DialogType.WARNING,
-              animType: AnimType.BOTTOMSLIDE,
-            //  title: 'هل انت واثق من تسجيل الخروج ؟',
-             desc: 'هل انت واثق من تسجيل الخروج ؟',
-              btnCancelOnPress: () {
-              },
-              btnOkOnPress: () async{
-                await FirebaseAuth.instance.signOut();
-                  Navigator.of(context)
-                      .pushReplacementNamed(WelcomeScreen.welcomeRoute);
-              },
-              )..show();
+                          context: context,
+                          dialogType: DialogType.WARNING,
+                          animType: AnimType.BOTTOMSLIDE,
+                          //  title: 'هل انت واثق من تسجيل الخروج ؟',
+                          desc: 'هل انت واثق من تسجيل الخروج ؟',
+                          btnCancelOnPress: () {},
+                          btnOkOnPress: () async {
+                            await FirebaseAuth.instance.signOut();
+                            Navigator.of(context).pushReplacementNamed(
+                                WelcomeScreen.welcomeRoute);
+                          },
+                        )..show();
                       },
                     ),
                     const SizedBox(
                       height: 30,
                     ),
                     MyButton(
-                      onPressed: ()=> Navigator.of(context).pushReplacementNamed(EditProfile.route),
+                      onPressed: () => Navigator.of(context)
+                          .pushReplacementNamed(EditProfile.route),
                       width: double.infinity,
                       text: 'تعديل المعلومات ',
                       color: kBlue,
                       icon: Icons.edit,
                       isVsabilIcon: true,
                     ),
-                     const SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     MyButton(
-                      onPressed: (){
-                          // ignore: avoid_single_cascade_in_expression_statements
-                     AwesomeDialog(
-                        context: context,
-                        dialogType: DialogType.WARNING,
-                        animType: AnimType.BOTTOMSLIDE,
-                        //  title: 'هل انت واثق من تسجيل الخروج ؟',
-                        desc:
-                            'هل انت واثق من حذف الحساب؟ سوف تخسر جميع بياناتك علي التطبيق',
-                        btnCancelOnPress: () {},
-                        btnOkOnPress: () {
-                           DocumentReference docRefUser = FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(_uid);
-                      docRefUser.delete();
-                          Navigator.of(context)
-                              .pushReplacementNamed(WelcomeScreen.welcomeRoute);
-                        },
-                      )..show();
-                        
+                      onPressed: () {
+                        // ignore: avoid_single_cascade_in_expression_statements
+                        AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.WARNING,
+                          animType: AnimType.BOTTOMSLIDE,
+                          //  title: 'هل انت واثق من تسجيل الخروج ؟',
+                          desc:
+                              'هل انت واثق من حذف الحساب؟ سوف تخسر جميع بياناتك علي التطبيق',
+                          btnCancelOnPress: () {},
+                          btnOkOnPress: () async {
+                            await _auth.currentUser?.delete();
+                            DocumentReference docRefUser = FirebaseFirestore
+                                .instance
+                                .collection('users')
+                                .doc(_uid);
+                            docRefUser.delete();
+                            Navigator.of(context).pushReplacementNamed(
+                                WelcomeScreen.welcomeRoute);
+                          },
+                        )..show();
                       },
                       width: double.infinity,
                       text: 'حذف الحساب ',
@@ -230,6 +245,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon: Icons.delete,
                       isVsabilIcon: true,
                     ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    isAdmin
+                        ? MyButton(
+                            onPressed: () {},
+                            width: double.infinity,
+                            text: 'الموافقه علي الطلبات',
+                            color: Colors.blue,
+                            icon: Icons.switch_access_shortcut,
+                            isVsabilIcon: true,
+                          )
+                        : Container(),
                   ],
                 ),
               ),

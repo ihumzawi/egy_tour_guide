@@ -2,7 +2,6 @@
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:egy_tour_guide/screens/auth/forget_password.dart';
-import 'package:egy_tour_guide/screens/home/home_screen.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -220,6 +219,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     MyButton(
                       onPressed: () async {
                         UserCredential response = await signIn();
+                        // ignore: unnecessary_null_comparison
                         if (response != null) {
                           debugPrint("+++++++++++++++++++++++++++++++");
                           // ignore: avoid_print

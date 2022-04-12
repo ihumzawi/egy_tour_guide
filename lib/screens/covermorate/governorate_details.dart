@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../taps.dart';
-import '../home/home_screen.dart';
 
 class GovernorateDetails extends StatefulWidget {
   final String categoryId;
@@ -18,6 +17,7 @@ class GovernorateDetails extends StatefulWidget {
   final String placeId;
   final String latLong;
 
+  // ignore: use_key_in_widget_constructors
   const GovernorateDetails({
     required this.categoryId,
     required this.categoryTitel,

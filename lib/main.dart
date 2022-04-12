@@ -1,8 +1,7 @@
-import 'package:egy_tour_guide/admin_forms/add_Item.dart';
+import 'package:egy_tour_guide/admin_forms/add_item.dart';
 import 'package:egy_tour_guide/screens/auth/forget_password.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
 import 'package:egy_tour_guide/screens/drawer/privacy_policy.dart';
-import 'package:egy_tour_guide/screens/home/home_screen.dart';
 import 'package:egy_tour_guide/screens/offers/offers_list.dart';
 import 'package:egy_tour_guide/screens/profile/edit_profile.dart';
 import 'package:egy_tour_guide/screens/profile/profile_screen.dart';
@@ -12,6 +11,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'screens/place_from_user/add_place_frome_user.dart';
 
 bool? isLogIn;
 void main() async {
@@ -76,7 +77,8 @@ class MyApp extends StatelessWidget {
         TapsScreen.tapsRoute: (context) => const TapsScreen(),
         OffersList.screenroute: (context) => const OffersList(),
         PrivacyPolicy.privacy: (context) => PrivacyPolicy(),
-        EditProfile.route :(context) => const EditProfile()
+        EditProfile.route :(context) => const EditProfile(),
+        AddPlaceFromUser.pageRoute :(context) => const AddPlaceFromUser(),
       },
     );
   }

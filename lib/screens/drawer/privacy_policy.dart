@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../taps.dart';
 
+// ignore: use_key_in_widget_constructors
 class PrivacyPolicy extends StatelessWidget {
   static const String privacy = 'pray';
   @override

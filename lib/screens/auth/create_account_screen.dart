@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, unnecessary_null_comparison
 
 import 'dart:io';
 
@@ -31,10 +30,13 @@ class _CreatAccountState extends State<CreatAccount> {
   bool _isLoading = false;
   final TextEditingController _passward = TextEditingController();
   final TextEditingController _confermPassward = TextEditingController();
+  // ignore: prefer_final_fields
   late TextEditingController _fullNameController =
       TextEditingController(text: '');
+  // ignore: prefer_final_fields
   late TextEditingController _myemailController =
       TextEditingController(text: '');
+  // ignore: prefer_final_fields
   late TextEditingController _mypasswordController =
       TextEditingController(text: '');
 
@@ -133,22 +135,14 @@ class _CreatAccountState extends State<CreatAccount> {
     var formData = formState.currentState;
     if (formData!.validate()) {
       if (imageFile == null) {
-        // ignore: avoid_single_cascade_in_expression_statements
         AwesomeDialog(
             context: context,
             dialogType: DialogType.INFO,
-            body: Column(
-              children: [
-                const Text('برجاء اختيار صورة'),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(WelcomeScreen.welcomeRoute);
-                    },
-                    child: const Text('تسجيل الدخول'))
-              ],
-            ))
-          ..show();
+            animType: AnimType.BOTTOMSLIDE,
+            btnOkOnPress: (){
+            },
+            body:  const Text('برجاء اختيار صورة'),)
+          .show();
       }
       formData.save();
       setState(() {
@@ -177,19 +171,17 @@ class _CreatAccountState extends State<CreatAccount> {
         return userCredential;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
-          // ignore: avoid_single_cascade_in_expression_statements
           AwesomeDialog(
               context: context,
               dialogType: DialogType.ERROR,
               body: const Text('كلمه المرور ضعيفه جدا'))
-            ..show();
+            .show();
           // ignore: avoid_print
           print('The password provided is too weak.');
           setState(() {
             _isLoading = false;
           });
         } else if (e.code == 'email-already-in-use') {
-          // ignore: avoid_single_cascade_in_expression_statements
           AwesomeDialog(
               context: context,
               dialogType: DialogType.ERROR,
@@ -197,7 +189,7 @@ class _CreatAccountState extends State<CreatAccount> {
                 'هذا الايميل مستعمل من قبل يمكنك الضغط علي تسجيل الدخول وتسجيل الدخول بحسابك',
                 textAlign: TextAlign.center,
               ))
-            ..show();
+            .show();
 
           // ignore: avoid_print
           print('The account already exists for that email.');
@@ -209,13 +201,10 @@ class _CreatAccountState extends State<CreatAccount> {
         setState(() {
           _isLoading = false;
         });
-        // ignore: avoid_print
         print(e);
-        // ignore: avoid_print
         print('===========');
       }
     } else {
-      // ignore: avoid_print
       print('not valide');
     }
     setState(() {
@@ -292,7 +281,7 @@ class _CreatAccountState extends State<CreatAccount> {
                                   shape: BoxShape.circle,
                                 ),
                                 child: imageFile == null
-                                    ? Padding(
+                                    ? const Padding(
                                         padding: EdgeInsets.all(2.0),
                                         child: Padding(
                                           padding: EdgeInsets.all(2.0),
@@ -303,7 +292,7 @@ class _CreatAccountState extends State<CreatAccount> {
                                           ),
                                         ),
                                       )
-                                    : Icon(
+                                    : const Icon(
                                         Icons.edit,
                                         size: 18,
                                         color: kBlue,
@@ -316,7 +305,7 @@ class _CreatAccountState extends State<CreatAccount> {
                           autofocus: true,
                           controller: _fullNameController,
                           hint: 'ادخل الاسم ',
-                          icon: Icon(Icons.person),
+                          icon: const Icon(Icons.person),
                           textInputAction: TextInputAction.next,
                           textInputType: TextInputType.name,
                           onChanged: (v) {
@@ -417,8 +406,8 @@ class _CreatAccountState extends State<CreatAccount> {
                           height: 20,
                         ),
                         _isLoading
-                            ? Center(
-                                child: Container(
+                            ? const Center(
+                                child: SizedBox(
                                   width: 70,
                                   height: 70,
                                   child: CircularProgressIndicator(),
@@ -451,6 +440,7 @@ class _CreatAccountState extends State<CreatAccount> {
                                           children: [
                                             const Text(' تم التسجيل بنجاح برجاء تفعيل الحساب'),
                                              const Text(' تم ارسال رساله الي برديك'),
+                                               // ignore: unnecessary_string_interpolations
                                                Text('${_myemailController.text.trim().toLowerCase()}'),
                                           
                                           ],

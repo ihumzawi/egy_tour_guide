@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:egy_tour_guide/palette.dart';
 
 class MyTextField extends StatelessWidget {
-  const MyTextField({
-    Key? key,
+
+  void selectType (){}
+   MyTextField({
+     this.onTap ,
+    this.icon = const Icon(Icons.abc),
+
     required this.hint,
-    required this.icon,
     this.obscureText = false,
     required this.textInputAction,
     required this.textInputType,
@@ -18,11 +21,23 @@ class MyTextField extends StatelessWidget {
     this.controller,
     this.suffix,
     this.contentpading =
-        const EdgeInsets.only(top: 17, left: 15, bottom: 15, right: 15), this.onChanged,
-  }) : super(key: key);
+        const EdgeInsets.only(top: 17, left: 15, bottom: 15, right: 15),
+    this.onChanged,
+    this.enabled = true,
+    this.isIconVisiblePrefix = true,
+    this.isIconVisibleSuffix = true,
+    this.maxLines = 1,
+    this.enabledMaxLength = false,
+    this.maxLength = 20,
+    this.enabledBorderRadius = true,
+    this.isKey,
+    
+  });
   final String hint;
   final Widget icon;
   final bool obscureText;
+  final bool isIconVisiblePrefix;
+  final bool isIconVisibleSuffix;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final Color fillColor;
@@ -33,7 +48,14 @@ class MyTextField extends StatelessWidget {
   final TextEditingController? controller;
   final Widget? suffix;
   final EdgeInsets contentpading;
-  final ValueChanged? onChanged ;
+  final ValueChanged? onChanged;
+  final bool enabled;
+  final bool enabledBorderRadius;
+  final bool enabledMaxLength;
+  final int maxLines;
+  final int maxLength;
+  final VoidCallback? onTap;
+  final Key? isKey ;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,9 +63,14 @@ class MyTextField extends StatelessWidget {
         top: 20,
       ),
       child: TextFormField(
+        key: isKey,
+        onTap:onTap,
+        maxLines: maxLines,
+        maxLength: enabledMaxLength ? maxLength : null,
+        enabled: enabled,
         controller: controller,
         onSaved: onSaved,
-        onChanged: onChanged ,
+        onChanged: onChanged,
         validator: validator,
         obscureText: obscureText,
         textInputAction: textInputAction,
@@ -62,26 +89,41 @@ class MyTextField extends StatelessWidget {
               color: Colors.blue,
               width: 1.5,
             ),
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: enabledBorderRadius
+                ? BorderRadius.circular(50)
+                : BorderRadius.circular(0),
           ),
           // enabled
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: enabledBorderRadius
+                  ? BorderRadius.circular(50)
+                  : BorderRadius.circular(0),
               borderSide: BorderSide.none),
+          // disabled
+          disabledBorder: OutlineInputBorder(
+              borderRadius: enabledBorderRadius
+                  ? BorderRadius.circular(50)
+                  : BorderRadius.circular(0),
+              borderSide:
+                  const BorderSide(color: Color.fromARGB(255, 149, 149, 149))),
           // enabled error
           errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: enabledBorderRadius
+                  ? BorderRadius.circular(50)
+                  : BorderRadius.circular(0),
               borderSide: const BorderSide(color: Colors.red)),
-          //focusedErrorBorder
+          // focusedErrorBorder
           focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
-              borderSide: const BorderSide(color: Colors.redAccent)),
+            borderRadius: enabledBorderRadius
+                ? BorderRadius.circular(50)
+                : BorderRadius.circular(0),
+            borderSide: const BorderSide(color: Colors.redAccent),
+          ),
           contentPadding: contentpading,
-
-          suffix: suffix,
-
-          prefixIcon: icon,
+          suffix: isIconVisiblePrefix ? suffix : null,
+          prefixIcon: isIconVisiblePrefix ? icon : null,
           hintText: hint,
+
           hintStyle: const TextStyle(color: kGray, fontWeight: FontWeight.w700),
         ),
       ),

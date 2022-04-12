@@ -1,7 +1,6 @@
 import 'package:egy_tour_guide/models/models.dart';
 import 'package:egy_tour_guide/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../app_data.dart';
 

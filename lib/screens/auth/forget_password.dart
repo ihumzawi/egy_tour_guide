@@ -14,6 +14,7 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
+  // ignore: unused_field
   String? _email ; 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
@@ -84,6 +85,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       onPressed: () async {
                         var formData = formState.currentState ;
                         if (formData!.validate()){
+                         // ignore: unused_local_variable
                          User? user = FirebaseAuth.instance.currentUser ;
                          
                         }else{

@@ -20,10 +20,12 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   String _uid = '';
+  String _mail = '';
   void gitUserId() {
     final _auth = FirebaseAuth.instance;
     User? user = _auth.currentUser;
     _uid = user!.uid;
+    _mail = user.email! ;
   }
 
   @override
@@ -58,8 +60,17 @@ class _EditProfileState extends State<EditProfile> {
               const SizedBox(
                 height: 20.0,
               ),
-              const MyText(),
-              const MyText(title: 'تعديل الاسم'),
+              const MyText(title: 'لا يمكن تغير الاميل يمكنك حذف الحساب واعداة التعين'),
+
+               MyTextField(
+                hint: _mail,
+                icon: const Icon(Icons.email_rounded),
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.name,
+                enabled: false,
+              ),
+                            const MyText(title: 'تعديل الاسم'),
+
               MyTextField(
                 controller: _nameController,
                 hint: 'تعديل الاسم',

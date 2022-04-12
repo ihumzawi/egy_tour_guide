@@ -8,7 +8,8 @@ class CatCard extends StatelessWidget {
   final Color btomColor;
   final String photoPath;
   final VoidCallback onTap;
-  CatCard(
+  // ignore: use_key_in_widget_constructors
+  const CatCard(
       {required this.title,
       required this.photoPath,
       required this.supTitle,
@@ -17,7 +18,6 @@ class CatCard extends StatelessWidget {
       required this.onTap});
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return InkWell(
       onTap: onTap,
       child: Padding(

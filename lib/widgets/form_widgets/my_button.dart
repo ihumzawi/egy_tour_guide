@@ -2,10 +2,10 @@ import 'package:egy_tour_guide/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:egy_tour_guide/palette.dart';
 
+// ignore: must_be_immutable
 class MyButton extends StatelessWidget {
 
    MyButton({
-    Key? key,
     this.text = '',
     this.textColor = kWhite,
     this.color = kBlue,
@@ -17,7 +17,7 @@ class MyButton extends StatelessWidget {
     this.width = 140,
     this.onPressed, this.icon = Icons.ac_unit,
    this.isVsabilIcon = false ,
-  }) : super(key: key);
+  });
    bool isVsabilIcon ;
   final IconData icon ;
   final Color textColor ;
@@ -46,7 +46,7 @@ class MyButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                isVsabilIcon ? Icon(icon ,color: kWhite,) : Icon(null) ,
+                isVsabilIcon ? Icon(icon ,color: kWhite,) : const Icon(null) ,
                 Text(
                   textIcon,
                   style: const TextStyle(

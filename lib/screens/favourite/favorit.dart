@@ -3,9 +3,8 @@ import 'package:egy_tour_guide/taps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/my_text.dart';
-import '../widgets/places_item.dart';
-import 'home/home_screen.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/places_item.dart';
 
 class FavoritScreen extends StatefulWidget {
   const FavoritScreen({ Key? key }) : super(key: key);
