@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -63,9 +62,7 @@ class _CreatAccountState extends State<CreatAccount> {
     PickedFile? picedFile = await ImagePicker()
         // ignore: deprecated_member_use
         .getImage(source: ImageSource.gallery, maxHeight: 1080, maxWidth: 1080);
-    // setState(() {
-    //   imageFile = File(picedFile!.path);
-    // });
+
     cropImage(picedFile!.path);
     Navigator.of(context).pop();
   }
@@ -122,6 +119,7 @@ class _CreatAccountState extends State<CreatAccount> {
       sourcePath: filePath,
       maxHeight: 1080,
       maxWidth: 1080,
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1)
     );
 
     if (cropImage != null) {
@@ -136,13 +134,12 @@ class _CreatAccountState extends State<CreatAccount> {
     if (formData!.validate()) {
       if (imageFile == null) {
         AwesomeDialog(
-            context: context,
-            dialogType: DialogType.INFO,
-            animType: AnimType.BOTTOMSLIDE,
-            btnOkOnPress: (){
-            },
-            body:  const Text('برجاء اختيار صورة'),)
-          .show();
+          context: context,
+          dialogType: DialogType.INFO,
+          animType: AnimType.BOTTOMSLIDE,
+          btnOkOnPress: () {},
+          body: const MyText(title: 'برجاء اختيار صورة'),
+        ).show();
       }
       formData.save();
       setState(() {
@@ -166,16 +163,18 @@ class _CreatAccountState extends State<CreatAccount> {
           'name': _fullNameController.text,
           'email': _myemailController.text,
           'userImageURL': url,
+          'isAdmin': false,
           'createdAd': Timestamp.now(),
         });
         return userCredential;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           AwesomeDialog(
-              context: context,
-              dialogType: DialogType.ERROR,
-              body: const Text('كلمه المرور ضعيفه جدا'))
-            .show();
+                  context: context,
+                  dialogType: DialogType.ERROR,
+                   btnOkOnPress: () {},
+                  body: const MyText(title: 'كلمه المرور ضعيفه جدا'))
+              .show();
           // ignore: avoid_print
           print('The password provided is too weak.');
           setState(() {
@@ -185,11 +184,11 @@ class _CreatAccountState extends State<CreatAccount> {
           AwesomeDialog(
               context: context,
               dialogType: DialogType.ERROR,
-              body: const Text(
+              btnOkOnPress: () {},
+              body: const MyText( title :
                 'هذا الايميل مستعمل من قبل يمكنك الضغط علي تسجيل الدخول وتسجيل الدخول بحسابك',
                 textAlign: TextAlign.center,
-              ))
-            .show();
+              )).show();
 
           // ignore: avoid_print
           print('The account already exists for that email.');
@@ -318,7 +317,7 @@ class _CreatAccountState extends State<CreatAccount> {
                               _myemailController.text = value;
                             },
                             validator: (val) {
-                              if (val.length > 30 || val.length < 7) {
+                              if (val.length > 50 || val.length < 7) {
                                 return "لا يمكن ان يكون الايميل بهذا الحجم";
                               }
 
@@ -419,6 +418,7 @@ class _CreatAccountState extends State<CreatAccount> {
                                   // ignore: avoid_print
                                   print('===========');
 
+                                  // ignore: unnecessary_null_comparison
                                   if (respon != null) {
                                     User? user =
                                         FirebaseAuth.instance.currentUser;
@@ -428,21 +428,28 @@ class _CreatAccountState extends State<CreatAccount> {
                                     }
                                     // ignore: avoid_print
                                     print(respon.user!.email);
-                                      Navigator.of(context)
-                                                      .pushReplacementNamed(
-                                                          WelcomeScreen
-                                                              .welcomeRoute);
+                                    Navigator.of(context).pushReplacementNamed(
+                                        WelcomeScreen.welcomeRoute);
                                     // ignore: avoid_single_cascade_in_expression_statements
                                     AwesomeDialog(
                                         context: context,
                                         dialogType: DialogType.SUCCES,
+                                        btnOkOnPress: () {},
                                         body: Column(
                                           children: [
-                                            const Text(' تم التسجيل بنجاح برجاء تفعيل الحساب'),
-                                             const Text(' تم ارسال رساله الي برديك'),
-                                               // ignore: unnecessary_string_interpolations
-                                               Text('${_myemailController.text.trim().toLowerCase()}'),
-                                          
+                                            const MyText(
+                                                title:
+                                                    ' تم التسجيل بنجاح برجاء تفعيل الحساب'),
+                                            const MyText(
+                                                title:
+                                                    ' تم ارسال رساله الي برديك'),
+                                            // ignore: unnecessary_string_interpolations
+                                            MyText(
+                                                title:
+                                                    _myemailController.text.trim().toLowerCase()),
+                                            const SizedBox(
+                                              height: 10,
+                                            )
                                           ],
                                         ))
                                       ..show();
@@ -459,7 +466,9 @@ class _CreatAccountState extends State<CreatAccount> {
                                     _isLoading = false;
                                   });
                                 },
-                                text: 'انشاء',
+                                isVsabilIcon: true,
+                                icon: Icons.app_registration_rounded,
+                                text: 'انشاء حساب',
                                 left: 40,
                                 right: 40,
                                 width: 200,
@@ -482,11 +491,9 @@ class _CreatAccountState extends State<CreatAccount> {
                                 Navigator.of(context).pushReplacementNamed(
                                     WelcomeScreen.welcomeRoute);
                               },
-                              child: const Text(
-                                'تسجيل الدخول',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            )
+                              child: const MyText(
+                                  title: 'تسجيل الدخول', fontSize: 12),
+                            ),
                           ],
                         ),
                       ],

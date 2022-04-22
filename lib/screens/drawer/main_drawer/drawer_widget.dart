@@ -1,12 +1,15 @@
 import 'package:egy_tour_guide/constant/constant.dart';
 import 'package:egy_tour_guide/screens/drawer/all_users.dart';
 import 'package:egy_tour_guide/screens/drawer/privacy_policy.dart';
+import 'package:egy_tour_guide/screens/drawer/rateing.dart';
 import 'package:egy_tour_guide/screens/profile/profile_screen.dart';
 import 'package:egy_tour_guide/utils.dart';
 import 'package:egy_tour_guide/widgets/list_tile_item.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../about_us.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -48,7 +51,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               children: [
                 Flexible(
                     child: Image.asset(
-                  "assets/images/news.png",
+                  "assets/images/pyramid.png",
                   scale: 1,
                 )),
                 const SizedBox(
@@ -81,14 +84,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   supTitle: 'يضم معلومات عن فريق عمل التطبيق',
                   icon: Icons.person,
                 ),
-                ListTileItem(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  title: 'من نحن',
-                  supTitle: 'يضم معلومات عن فريق عمل التطبيق',
-                  icon: Icons.supervisor_account,
-                ),
+                
                 ListTileItem(
                   onTap: () {
                     Navigator.push(
@@ -104,33 +100,17 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 ),
                 ListTileItem(
                   onTap: () {
-                    Navigator.pop(context);
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const RateingScreen(),
+                        ));
+                    // Navigator.pop(context);
                   },
-                  title: 'فيم البرنامج',
+                  title: 'قيم البرنامج',
                   supTitle: 'قم بتقيم التطبيق واضافه مقترحاتك للتحسين',
                   icon: Icons.rate_review,
                 ),
-                // FutureBuilder<DocumentSnapshot>(
-                //     future: FirebaseFirestore.instance
-                //         .collection('users')
-                //         .doc(uid)
-                //         .get(),
-                //     builder: (BuildContext ctx, snapshot) {
-                //       if (snapshot.connectionState == ConnectionState.waiting) {
-                //       return const Center(child: CircularProgressIndicator());
-                //     } else {
-                //       if (snapshot.data == null) {
-                //         return const Text('no comment');
-                //       }
-                //     }
-                //      return
-                        
-                //        Text('kkk');
-                        
-                      
-                     
-                //     }), // المدير
-
                 ListTileItem(
                   onTap: () {
                     Navigator.pop(context);
@@ -148,6 +128,19 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   title: 'سايسة الخصوصية',
                   supTitle: 'سياسة الخصوصي الخاصة بطريقه عمل التطبيق',
                   icon: Icons.privacy_tip_rounded,
+                ),
+                ListTileItem(
+                  onTap: () {
+                      Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>  AboutUs(),
+                  ),
+                );
+                  },
+                  title: 'من نحن',
+                  supTitle: 'يضم معلومات عن فريق عمل التطبيق',
+                  icon: Icons.supervisor_account,
                 ),
               ],
             ),

@@ -43,7 +43,7 @@ class _TapsScreenState extends State<TapsScreen> {
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.dashboard), label: 'التصنيفات'),
-          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'المفضلة'),
+          BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'خطة السياحة'),
         ],
       ),
       body: screens[screenIndex],

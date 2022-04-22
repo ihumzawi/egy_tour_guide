@@ -5,6 +5,7 @@ import 'package:egy_tour_guide/palette.dart';
 class MyTextField extends StatelessWidget {
 
   void selectType (){}
+   // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
    MyTextField({
      this.onTap ,
     this.icon = const Icon(Icons.abc),
@@ -89,6 +90,15 @@ class MyTextField extends StatelessWidget {
               color: Colors.blue,
               width: 1.5,
             ),
+            
+            borderRadius: enabledBorderRadius
+                ? BorderRadius.circular(50)
+                : BorderRadius.circular(0),
+          ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.blue,
+              width: 1.5,),
             borderRadius: enabledBorderRadius
                 ? BorderRadius.circular(50)
                 : BorderRadius.circular(0),

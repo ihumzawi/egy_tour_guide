@@ -94,7 +94,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Image.asset(
-                      "assets/images/logo-welcome.png",
+                      "assets/images/logo.png",
                       height: 180.0,
                     ),
                     const MyText(
@@ -195,22 +195,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         const SizedBox(
                           width: 20,
                         ),
-                        GestureDetector(
-                          onTap: () async {
-                            //  userCredential = await FirebaseAuth.instance.signInAnonymously();
-
-                            //  print(userCredential);
-                          },
-                          // ignore: prefer_const_constructors
-
-                          child: const MyText(
-                            title: 'الدخول كازائر',
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
-                            textAlign: TextAlign.center,
-                            color: kBlue,
-                          ),
-                        ),
+                       
                       ],
                     ),
                     const SizedBox(
@@ -255,7 +240,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           }
                         }
                       },
-                      textIcon: " ",
+                      isVsabilIcon: true,
+                      icon: Icons.login_rounded,
                       text: 'تسجيل الدخول',
                       left: 30,
                       right: 30,

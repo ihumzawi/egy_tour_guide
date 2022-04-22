@@ -9,7 +9,7 @@ class PlacesItem extends StatelessWidget {
   final String des;
   final String placeId;
   final String latLong;
-
+final String activitys;
   void selectPlace(BuildContext context) {
    
     Navigator.pushReplacement(
@@ -18,7 +18,7 @@ class PlacesItem extends StatelessWidget {
         builder: (context) => GovernorateDetails(
           categoryTitel: title,
           categoryId: id, des: des, imageUrl: imageUrl,
-          placeId: placeId, latLong: latLong,
+          placeId: placeId, latLong: latLong, activitys:activitys ,
         ),
         
       ),
@@ -26,7 +26,7 @@ class PlacesItem extends StatelessWidget {
   }
   // ignore: use_key_in_widget_constructors
   const PlacesItem({required this.id, required this.title, required this.imageUrl, required this.des,
-   required this.placeId, required this.latLong,
+   required this.placeId, required this.latLong, required this.activitys,
    });
 
   @override

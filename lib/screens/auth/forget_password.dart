@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:egy_tour_guide/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   // ignore: unused_field
-  String? _email ; 
+  String? _email;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
   @override
@@ -25,14 +26,16 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       appBar: AppBar(
         backgroundColor: kDebWhite,
         elevation: 0,
-        leading:GestureDetector(
-          onTap: ()=> Navigator.of(context).pushReplacementNamed(WelcomeScreen.welcomeRoute),
-          child: const Icon(Icons.arrow_back_ios,color: Colors.blue,)),
+        leading: GestureDetector(
+            onTap: () => Navigator.of(context)
+                .pushReplacementNamed(WelcomeScreen.welcomeRoute),
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.blue,
+            )),
       ),
       body: SafeArea(
-        
         child: Center(
-
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -42,7 +45,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                
                     const MyText(
                       color: kBlack,
                       title: 'استرجاع كلمة المرور',
@@ -50,15 +52,16 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       fontSize: 25,
                     ),
                     const MyText(
-                      title: 'سنقوم بأرسال رساله الي بريدك الاليكترونى لاسترجاع كلمة المرور',
+                      title:
+                          'سنقوم بأرسال رساله الي بريدك الاليكترونى لاسترجاع كلمة المرور',
                       color: kGray,
                       fontWeight: FontWeight.w700,
                       fontSize: 15,
                     ),
                     MyTextField(
-                      onChanged: (value){
+                      onChanged: (value) {
                         setState(() {
-                          _email = value ;
+                          _email = value;
                         });
                       },
                       validator: (val) {
@@ -72,26 +75,39 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           return 'يجب كتابه ايميل صحيح في هذا الحقل';
                         }
                       },
-                      hint: 'أدخال بريدك الاليكترونى',
-                      icon:  const Icon(Icons.email_outlined),
+                      hint: 'أدخال بريدك الإلكتروني',
+                      icon: const Icon(Icons.email_outlined),
                       textInputAction: TextInputAction.next,
                       autofocus: false,
                       textInputType: TextInputType.emailAddress,
                     ),
-                   const  SizedBox(
-                      height: 20 ,
+                    const SizedBox(
+                      height: 20,
                     ),
                     MyButton(
                       onPressed: () async {
-                        var formData = formState.currentState ;
-                        if (formData!.validate()){
-                         // ignore: unused_local_variable
-                         User? user = FirebaseAuth.instance.currentUser ;
-                         
-                        }else{
+                        var formData = formState.currentState;
+                        if (formData!.validate()) {
+                          final _auth = FirebaseAuth.instance;
 
-                        }
+                          await _auth.sendPasswordResetEmail(email: _email!);
+                          _email = '';
+
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.SUCCES,
+                            animType: AnimType.BOTTOMSLIDE,
+                            btnOkOnPress: () {
+                              Navigator.of(context).pushReplacementNamed(
+                                  WelcomeScreen.welcomeRoute);
+                            },
+                            body: const Text(
+                                'تم ارسال رسالة استرجاع كلمة المرور علي بريدك'),
+                          ).show();
+                        } else {}
                       },
+                      isVsabilIcon: true,
+                      icon: Icons.lock_reset_rounded,
                       text: 'استرجاع كلمة المرور',
                       left: 30,
                       right: 30,

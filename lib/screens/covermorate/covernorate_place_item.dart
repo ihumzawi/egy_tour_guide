@@ -57,7 +57,8 @@ class _CovernoratePlaceItemState extends State<CovernoratePlaceItem> {
                       title: snapshot.data!.docs[index]['name'],
                       des:snapshot.data!.docs[index]['des'] ,
                       placeId:snapshot.data!.docs[index]['placeID'], 
-                      latLong: snapshot.data!.docs[index]['latLong'] ,
+                      latLong: snapshot.data!.docs[index]['latLong'],
+                       activitys: snapshot.data!.docs[index]['placeActivitys'] ,
                     );
                   }),
                 );

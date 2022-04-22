@@ -1,4 +1,3 @@
-import 'package:egy_tour_guide/admin_forms/add_item.dart';
 import 'package:egy_tour_guide/screens/auth/forget_password.dart';
 import 'package:egy_tour_guide/screens/covermorate/covernorate_screen.dart';
 import 'package:egy_tour_guide/screens/drawer/privacy_policy.dart';
@@ -12,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'admin/add_covernorate.dart';
 import 'screens/place_from_user/add_place_frome_user.dart';
 
 bool? isLogIn;

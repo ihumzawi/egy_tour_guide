@@ -26,6 +26,7 @@ class MyText extends StatelessWidget {
         title,
         overflow: TextOverflow.ellipsis,
         maxLines: lines,
+        
         textAlign: textAlign,
         style:
             TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color,   fontFamily: 'ElMessiri'),

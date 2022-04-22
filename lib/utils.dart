@@ -16,15 +16,24 @@ class Utils {
   }
 
   static void openWhatsApp(
-      {required String numper, String text = 'مرحبا'}) async {
-    String url = 'https://wa.me/$numper?text=$text';
+      {required String numper, String text = 'welcome'}) async {
+    String url = 'https://wa.me/02$numper?text=$text';
 
     if (await canLaunch(url)) {
       await launch(
         url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
+      );
+    } else {
+      throw 'لقد حدث خطأ اثناء الارسال';
+    }
+  }
+  static void urlLuncher(
+      {required String url}) async {
+   
+
+    if (await canLaunch(url)) {
+      await launch(
+        url,
       );
     } else {
       throw 'لقد حدث خطأ اثناء الارسال';
@@ -37,9 +46,6 @@ class Utils {
     if (await canLaunch(url)) {
       await launch(
         url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
       );
     } else {
       throw 'لقد حدث خطأ اثناء ارسال الايميل';
@@ -52,9 +58,6 @@ class Utils {
     if (await canLaunch(url)) {
       await launch(
         url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
       );
     } else {
       throw 'لقد حدث خطأ اثناء ارسال الاتصال';

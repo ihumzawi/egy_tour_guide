@@ -3,6 +3,9 @@ import 'package:egy_tour_guide/taps.dart';
 import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 
+import '../../admin/add_covernorate.dart';
+import '../ads/add_ads.dart';
+
 class AddPlaceFromUser extends StatelessWidget {
   static const pageRoute = 'addPlaseUsar';
   const AddPlaceFromUser({Key? key}) : super(key: key);
@@ -29,72 +32,89 @@ class AddPlaceFromUser extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+           
+            kElevatedButton(
+              context,
+              imagePath: 'assets/images/entertainment_place.png',
+              title: 'أضف مكان ترفيهي',
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddPlace(),
                   ),
-                ),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddPlace(),
-                    ),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        'assets/images/entertainment_place.png',
-                        scale: 6,
-                      ),
-                      const MyText(
-                        title: 'أضف مكان ترفيهي',
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                );
+              },
             ),
             const SizedBox(
               height: 20,
             ),
-            Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+            kElevatedButton(
+              context,
+              imagePath: 'assets/images/pyramids.png',
+              title: 'اضف مكان داخل المحافظة',
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddItem(),
                   ),
-                ),
-                onPressed: () {
-
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        'assets/images/pyramids.png',
-                        scale: 6,
-                      ),
-                      const MyText(
-                        title: 'أضف مكان ترفيهي',
-                        color: Colors.white,
-                      )
-                    ],
+                );
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            kElevatedButton(
+              context,
+              imagePath: 'assets/images/ads.png',
+              title: 'اضف اعلان ',
+              onPressed:() {
+                  Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddAdsScreen(),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ],
         ),
       ),
     );
   }
-  
+
+  Center kElevatedButton(BuildContext context,
+      {required String imagePath,
+      required String title,
+      required VoidCallback onPressed}) {
+    return Center(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        onPressed: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SizedBox(
+            width: 150,
+            child: Column(
+              children: [
+                Image.asset(
+                  imagePath,
+                  scale: 6,
+                ),
+                MyText(
+                  title: title,
+                  color: Colors.white,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

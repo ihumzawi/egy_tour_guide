@@ -46,7 +46,7 @@ class CovernorateItem extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             alignment: Alignment.center,
             child: Text(
-              title,
+              title+' $id',
               style: Theme.of(context).textTheme.headline6,
             ),
             decoration: BoxDecoration(

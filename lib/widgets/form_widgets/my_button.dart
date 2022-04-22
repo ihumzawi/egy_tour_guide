@@ -1,10 +1,12 @@
 import 'package:egy_tour_guide/screens/screens.dart';
+import 'package:egy_tour_guide/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:egy_tour_guide/palette.dart';
 
 // ignore: must_be_immutable
 class MyButton extends StatelessWidget {
 
+   // ignore: use_key_in_widget_constructors
    MyButton({
     this.text = '',
     this.textColor = kWhite,
@@ -55,13 +57,13 @@ class MyButton extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(
-                  text,
-                  style:  TextStyle(
+                MyText(
+                 title: text,
+                  
                     color: textColor,
-                    fontSize: 20,
+                    fontSize: 14,
                   ),
-                ),
+                
               ],
             ),
           ),

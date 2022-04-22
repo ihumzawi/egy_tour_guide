@@ -13,57 +13,57 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 // ignore: library_prefixes
 import 'package:path/path.dart' as Path;
 
-class AddPlace extends StatefulWidget {
-  const AddPlace({Key? key}) : super(key: key);
+class AddAdsScreen extends StatefulWidget {
+  const AddAdsScreen({Key? key}) : super(key: key);
 
   @override
-  State<AddPlace> createState() => _AddPlaceState();
+  State<AddAdsScreen> createState() => _AddAdsScreenState();
 }
 
-class _AddPlaceState extends State<AddPlace> {
-    String? userName;
+class _AddAdsScreenState extends State<AddAdsScreen> {
+  String? userName;
   String? userImageURL;
   bool uploading = false;
   bool isDisableImageButton = false;
+  bool isDisableTextInput = true;
   double val = 0;
   CollectionReference? imgRef;
   firebase_storage.Reference? ref;
   // ignore: prefer_final_fields
   List<File> _image = [];
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final placeId = const Uuid().v4();
+  final addId = const Uuid().v4();
 
   // text Editing Controller
-  TextEditingController categoryController =
-      TextEditingController(text: 'اضغط لاختيار تصنيف');
-  TextEditingController goverController =
-      TextEditingController(text: 'اختار الموقع');
+  
+  TextEditingController locationController =
+      TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  final _userPlacesFormKey = GlobalKey<FormState>();
+  TextEditingController phoneController = TextEditingController();
+  final _adsFormKey = GlobalKey<FormState>();
   @override
   void dispose() {
     super.dispose();
-    categoryController.dispose();
     titleController.dispose();
     descriptionController.dispose();
-    goverController.dispose();
+    locationController.dispose();
+    phoneController.dispose();
   }
 
   @override
   void initState() {
     super.initState();
     getData();
-    imgRef = FirebaseFirestore.instance.collection('userPlaces');
+    imgRef = FirebaseFirestore.instance.collection('ads');
   }
+
   void getData() async {
     try {
-     User? user = _auth.currentUser;
-    String _uid = user!.uid;
-      final DocumentSnapshot userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(_uid)
-          .get();
+      User? user = _auth.currentUser;
+      String _uid = user!.uid;
+      final DocumentSnapshot userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(_uid).get();
       // ignore: unnecessary_null_comparison
       if (userDoc == null) {
         return;
@@ -79,9 +79,9 @@ class _AddPlaceState extends State<AddPlace> {
     } finally {}
     print('$userImageURL ____________________________');
   }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: Constant.bgColor,
@@ -95,11 +95,11 @@ class _AddPlaceState extends State<AddPlace> {
             icon: const Icon(Icons.arrow_back_ios),
           );
         }),
-        title: const Text('اضف مكان'),
+        title: const Text('اضف اعلان'),
         centerTitle: true,
       ),
       body: Form(
-        key: _userPlacesFormKey,
+        key: _adsFormKey,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -107,40 +107,40 @@ class _AddPlaceState extends State<AddPlace> {
             children: [
               ksliverGrid(),
               textFormField(
-                onTapInk: () {
-                  chooseCategoryDialog(context, size, categoryController , Constant.placeCatigoryList);
-                },
-                ktitle: 'اضغط للاختيار',
-                valueKey: 'category',
-                hint: 'اضغط لاختيار تصنيف',
-                enabled: false,
-                controller: categoryController,
-              ),
-              textFormField(
-                onTapInk: () {
-                  chooseCategoryDialog(context, size , goverController , Constant.goverNoRate);
-                },
-                ktitle: 'الموقع',
-                valueKey: 'goverNoRate',
-                hint: 'اختر الموقع',
-                enabled: false,
-                controller: goverController,
-              ),
-              textFormField(
                 onTapInk: () {},
-                ktitle: 'العنوان',
+                ktitle: 'عنوان الاعلان',
                 valueKey: 'title',
-                hint: 'اكتب اسم دال علي المكان',
+                hint: 'اكتب عنوان الاعلان ',
+                enabled: isDisableTextInput,
                 controller: titleController,
               ),
               textFormField(
+                onTapInk: () {},
+                ktitle: 'رقم الهاتف',
+                valueKey: 'phone',
+                hint: 'رقم الهاتف للتواصل علي الهاتف و الواتس اب ',
+                controller: phoneController,
+                 enabled: isDisableTextInput,
+                textInputType: TextInputType.phone
+                
+              ),
+              textFormField(
+                onTapInk: () {},
+                ktitle: 'مكان الرحلة',
+                valueKey: 'location',
+                hint: 'مكان الرحلة ',
+                 enabled: isDisableTextInput,
+                controller: locationController,
+              ),    
+              textFormField(
                   onTapInk: () {},
-                  ktitle: 'وصف المكان الذي تريد مراجعته',
+                  ktitle: 'المميزات الخاصة بلاعلان',
                   valueKey: 'description',
-                  hint: 'اكتب وصف كامل عن المكان ..',
+                  hint: 'اكتب وصف كامل عن الاعلان ..',
                   controller: descriptionController,
-                  maxLines: 4,
+                  maxLines: 15,
                   maxLength: 250,
+                  enabled: isDisableTextInput,
                   enabledBorderRadius: false),
               const SizedBox(
                 height: 20,
@@ -181,67 +181,12 @@ class _AddPlaceState extends State<AddPlace> {
     );
   }
 
-  AwesomeDialog chooseCategoryDialog(BuildContext context, Size size , controller , list) {
-    return AwesomeDialog(
-      context: context,
-      dialogType: DialogType.NO_HEADER,
-      animType: AnimType.BOTTOMSLIDE,
-
-      //  title: 'هل انت واثق من تسجيل الخروج ؟',
-      btnCancelOnPress: () {},
-      btnCancelText: 'اغلاق',
-      body: Column(
-        children: [
-          const MyText(
-            title: 'اختار التصنيف المناسب',
-            fontWeight: FontWeight.bold,
-          ),
-          SizedBox(
-            width: size.width * 0.9,
-             height: size.width * .9,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        setState(() {
-                         controller.text =
-                              list[index];
-                        });
-
-                        print(
-                            "categoryController = ${ controller.text}");
-                        if (Navigator.of(context).canPop()) {
-                          Navigator.of(context).pop();
-                        }
-                      },
-                      child: Row(
-                        children: [
-                          const Icon(Icons.check_circle),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          MyText(
-                            title: list[index],
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-            ),
-          ),
-        ],
-      ),
-    )..show();
-  }
+ 
 
   void supmitForm() async {
     User? user = _auth.currentUser;
     String _uid = user!.uid;
-    final isValid = _userPlacesFormKey.currentState!.validate();
+    final isValid = _adsFormKey.currentState!.validate();
     FocusScope.of(context).unfocus();
     if (isValid) {
       if (_image.isEmpty) {
@@ -252,41 +197,25 @@ class _AddPlaceState extends State<AddPlace> {
           btnOkOnPress: () {},
           body: const Text('برجاء اختيار صورة'),
         ).show();
-      } else if (categoryController.text == 'اضغط لاختيار تصنيف') {
-        AwesomeDialog(
-          context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
-          btnOkOnPress: () {},
-          body: const Text('برجاء اختيار تصنيف'),
-        ).show();
-      } else if (goverController.text == 'اختار الموقع') {
-        AwesomeDialog(
-          context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
-          btnOkOnPress: () {},
-          body: const Text('برجاء اختيار موقع'),
-        ).show();
-      } else {
+      }else {
         setState(() {
           uploading = true;
           isDisableImageButton = true;
+          isDisableTextInput = true ;
         });
 
         // upload data to firestore
-        FirebaseFirestore.instance.collection('userPlaces').doc(placeId).set({
-          'placeId': placeId,
+        FirebaseFirestore.instance.collection('ads').doc(addId).set({
+          'placeId': addId,
           'uploadedBy': _uid,
-          'location': goverController.text,
+          'location': locationController.text,
           'placeTitle': titleController.text,
+          'phone': phoneController.text,
           'placeDescripton': descriptionController.text,
           'dateTimeStamp': Timestamp.now(),
-          'userPlaceComment': [],
           'isDone': false,
-          'userPlaceCategory': categoryController.text,
-          'userImage' : userImageURL.toString() ,
-          'userName' : userName.toString() ,
+          'userImage': userImageURL.toString(),
+          'userName': userName.toString(),
         });
 
         uploadFile().whenComplete(() => {
@@ -324,6 +253,7 @@ class _AddPlaceState extends State<AddPlace> {
     bool isIconVisiblePrefix = false,
     int maxLines = 1,
     int maxLength = 25,
+     TextInputType   textInputType =  TextInputType.name
   }) =>
       Column(
         children: [
@@ -344,7 +274,8 @@ class _AddPlaceState extends State<AddPlace> {
                 isIconVisiblePrefix: isIconVisiblePrefix,
                 hint: hint,
                 textInputAction: TextInputAction.next,
-                textInputType: TextInputType.name,
+                textInputType: textInputType,
+                
                 enabled: enabled,
                 isKey: ValueKey(valueKey),
                 maxLines: maxLines,
@@ -405,23 +336,22 @@ class _AddPlaceState extends State<AddPlace> {
     final pickedFile = await ImagePicker()
         // ignore: deprecated_member_use
         .getImage(source: ImageSource.gallery);
-    if (pickedFile != null){
-setState(() {
-      _image.add(File(pickedFile.path));
-    });
-    }else{
-            print('_______________response.isEmpty_______________');
-return ;
+    if (pickedFile != null) {
+      setState(() {
+        _image.add(File(pickedFile.path));
+      });
+    } else {
+      print('_______________response.isEmpty_______________');
+      return;
     }
     // ignore: unnecessary_null_comparison
     // if (pickedFile!.path == null) retrieveLostData();
-      
-     
   }
 
-
-
   Future uploadFile() async {
+    setState(() {
+      isDisableTextInput = false ;
+    });
     int i = 1;
 
     for (var img in _image) {
@@ -434,19 +364,18 @@ return ;
 
       await ref!.putFile(img).whenComplete(() async {
         await ref!.getDownloadURL().then((value) {
-        
-          imgRef!.doc(placeId).collection('imageUrl').add({'url': value});
+          imgRef!.doc(addId).collection('imageUrl').add({'url': value});
           if (i == 1) {
-            imgRef!.doc(placeId).update({'placeImage' : value});
+            imgRef!.doc(addId).update({'placeImage': value});
           }
           i++;
-          
         });
       });
     }
     setState(() {
       uploading = false;
       isDisableImageButton = false;
+      isDisableTextInput = true ;
     });
   }
 

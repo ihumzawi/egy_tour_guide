@@ -14,6 +14,7 @@ class FavoritScreen extends StatefulWidget {
 }
 
 class _FavoritScreenState extends State<FavoritScreen> {
+
   String uid = '';
   void gitUserId (){
   final _auth = FirebaseAuth.instance;
@@ -22,6 +23,7 @@ class _FavoritScreenState extends State<FavoritScreen> {
 }
 @override
   void initState() {
+    
    gitUserId ();
     super.initState();
   }
@@ -41,7 +43,7 @@ class _FavoritScreenState extends State<FavoritScreen> {
           );
         }),
         
-        title:  const Text('المفضلة'),
+        title:  const Text('خطه السياحة الخاصة بي'),
         centerTitle: true,
       ),
      body:StreamBuilder<QuerySnapshot>(
@@ -65,7 +67,8 @@ class _FavoritScreenState extends State<FavoritScreen> {
                       title: snapshot.data!.docs[index]['name'],
                       des:snapshot.data!.docs[index]['des'] ,
                       placeId:snapshot.data!.docs[index]['placeID'], 
-                      latLong: snapshot.data!.docs[index]['latLong'] ,
+                      latLong: snapshot.data!.docs[index]['latLong'],
+                      activitys:  snapshot.data!.docs[index]['placeActivitys'] ,
                     );
                   }),
                 );
